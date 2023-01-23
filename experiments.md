@@ -59,6 +59,8 @@ Instead of taking the max, we take a soft max.
 
 (torch.log(torch.exp(model_predictions).sum(axis=-2)) / model_predictions.shape[-2])
 
+super val_score of 0.837 but 0.657 on test_set (best submission)
+
 
 ## Other loss
 roc_loss: max(0, 1 - y_predict_pos + y_predict_neg) for every ps/neg couple
