@@ -1,4 +1,7 @@
-## 
+## BEST SO FAR
+
+BCELoss, MLP into SmoothMaxModel
+
 
 ## Clustering [BIG HOPE ON THIS TO AVOID OVERFITTING]
 
@@ -55,7 +58,7 @@ MaxModel takes a model which maps features of shape 2048 to a probability (for e
 
 ## SmoothMaxModel
 
-Instead of taking the max, we take a soft max.
+Instead of taking the max, we take a soft max. Work a lot better than just max.
 
 (torch.log(torch.exp(model_predictions).sum(axis=-2)) / model_predictions.shape[-2])
 
@@ -65,4 +68,4 @@ super val_score of 0.837 but 0.657 on test_set (best submission)
 ## Other loss
 roc_loss: max(0, 1 - y_predict_pos + y_predict_neg) for every ps/neg couple
 
-For now no big difference (even lower ?)
+For now quite bad
