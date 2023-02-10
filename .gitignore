@@ -135,4 +135,4 @@ data/
 wandb/
 
 #models
-models/
+saved_models/
