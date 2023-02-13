@@ -28,8 +28,8 @@ class MLP(MonoModel):
         self.num_layers = num_layers
 
         self.config = {
-            "num_layers": num_layers,
-            "inside_dim": inside_dim,
+            "nl": num_layers,
+            "id": inside_dim,
         }
 
         self.compute_name()

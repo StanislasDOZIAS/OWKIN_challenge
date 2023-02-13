@@ -66,25 +66,24 @@ def train(
         model.parameters(), lr=learning_rate, weight_decay=weight_decay
     )
 
-    run_name = f"{criterion._get_name()}/lr_{'{:.0e}'.format(learning_rate)}/wd_{'{:.0e}'.format(weight_decay)}/bs_{batch_size}"
+    run_name = f"{model.name}/{criterion._get_name()}/bs_{batch_size}/wd_{'{:.0e}'.format(weight_decay)}/lr_{'{:.0e}'.format(learning_rate)}"
+    if exp_name is not None:
+        run_name += f"/{exp_name}"
 
     try:
         if use_wandb:
-            config = model.config
+            config = copy.deepcopy(model.config)
             config["criterion"] = criterion._get_name()
             config["learning_rate"] = learning_rate
             config["weight_decay"] = weight_decay
             config["batch_size"] = batch_size
-            if exp_name is not None:
-                wandb.init(
-                    project="OWKIN",
-                    name=f"{exp_name}/{model.name}/{run_name}",
-                    config=config,
-                )
-            else:
-                wandb.init(
-                    project="OWKIN", name=f"{model.name}/{run_name}", config=config
-                )
+
+            wandb.init(
+                project="OWKIN",
+                name=run_name,
+                config=config,
+            )
+
         else:
             list_train_loss = []
             list_train_roc_auc_score = []
@@ -140,7 +139,8 @@ def train(
     except KeyboardInterrupt:
         pass
 
-    PATH_DIR = Path(f"saved_models/{model.name}")
+    PATH_DIR = Path(f"saved_models/{run_name}")
+
     PATH = (
         PATH_DIR
         / f"best_epoch_{best_epoch}_score_{'{:.3f}'.format(best_val_roc_auc_score)}.pt"

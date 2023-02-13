@@ -1,15 +1,42 @@
-## BEST SO FAR
+## Best submission
 
-BCELoss, MLP into SmoothMaxModel
+`num_layer=2, inside_dim=512, val_score = 0.808, wd = 0 => 0.6642`
 
 
-## Clustering [BIG HOPE ON THIS TO AVOID OVERFITTING]
+## Big grid search
 
-Do clustering with all squares (see `Kmeans.ipynb`), doesn't work for now ==> maybe later ?
+### Tested paramters
 
-NO UPDATED AT ALL, JUST SOME IDEAS
+```
+num_layers = 5
+inside_dim = 512
+criterion = nn.BCELoss()
 
-## MLP
+mono_batch_size = 64
+mono_nb_epochs = 5000
+batch_size = 16
+nb_epochs = 1000
+
+list_wd = [0, 1e-3, 3e-3, 1e-2]
+list_mono_lr = [1e-6, 3e-6, 1e-5]
+list_lr = [1e-6, 3e-6]
+```
+
+### Results
+
+- See W&B or `images\comparison_Smooth_MaxMLP_wd_lr_mono_lr`
+
+- `lr = 1e-6` same as `lr = 3e-6` but slower and steadier => keep `lr=1e-6`
+- `mono_lr = 3e-6` looks the more robust => keep `mono_lr=3e-6`
+- test results:
+    - `wd = 1e-2: 0.6178`
+    - `wd = 1e-3: 0.6201`
+
+
+
+
+
+## MLP (mono_model)
 
 MLP on the mean of all the 1000 square's features (see `MLP.ipynb`)
 

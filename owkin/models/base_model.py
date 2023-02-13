@@ -1,8 +1,9 @@
 from torch import nn
 
+
 class BaseModel(nn.Module):
     """
-    Base Model with all the strict minimum
+    Base Model with all the strict minimum: is_aggregator, type, config and name
     """
 
     def __init__(self):
