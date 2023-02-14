@@ -13,6 +13,7 @@ class MonoModel(BaseModel):
         super().__init__()
         self.is_aggregator = False
         self.best_path: Path = None
+        self.type = self._get_name()
 
 
 class MLP(MonoModel):
@@ -23,7 +24,6 @@ class MLP(MonoModel):
 
     def __init__(self, num_layers=1, inside_dim=0, input_dim=2048):
         super().__init__()
-        self.type = "MLP"
         self.inside_dim = inside_dim
         self.num_layers = num_layers
 

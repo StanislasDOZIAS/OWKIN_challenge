@@ -2,7 +2,7 @@
 
 Do clustering with all squares (see `Kmeans.ipynb`), doesn't work for now ==> maybe later ?
 
-Doesn't look to work: see (`Clustering_explo`)
+Doesn't look to work: see (`Clustering_explo.ipynb`)
 
 ## PAPER IDEAS
 

@@ -1,6 +1,10 @@
 ## List of usefull papers
 
+
 ### General
+
+instance/bag lvl
+
 - Multiple instance classification: Review, taxonomy and comparative study
 
 https://www.sciencedirect.com/science/article/pii/S0004370213000581
@@ -9,6 +13,9 @@ https://www.sciencedirect.com/science/article/pii/S0004370213000581
 
 https://paperswithcode.com/task/multiple-instance-learning
 
+- Multiple Instance Learning: A Survey of Problem Characteristics and Applications
+
+https://arxiv.org/pdf/1612.03365.pdf
 
 ### MLP
 

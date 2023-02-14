@@ -6,9 +6,12 @@ from pathlib import Path
 from owkin.models.base_model import BaseModel
 
 
+## TODO: aggregator = instance space method
+
+
 class BaseAggregator(BaseModel):
     """
-    An Aggregator Model takes a Mono Model and apply it to each of the 1000 features of a lime.
+    An Aggregator Model takes a Mono Model and apply it to each of the 1000 tiles of a lime.
     Then it aggregates theses results to give a single output (e.g. the Maximum).
 
     The Mono Model must have:

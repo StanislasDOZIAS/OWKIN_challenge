@@ -102,7 +102,7 @@ def build_dataset(data_path: str = "data/"):
         X_val,
         X_val_mean,
         y_val,
-        X_test_mean,
         X_test,
+        X_test_mean,
         df_test,
     )
