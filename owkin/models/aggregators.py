@@ -46,7 +46,7 @@ class MaxAggregator(BaseAggregator):
 
     def forward(self, x):
         mono_model_predictions = self.mono_model(x)
-        max_prediction, _ = mono_model_predictions.max(axis=-2)
+        max_prediction, _ = mono_model_predictions.max(axis=-1)
         return max_prediction
 
 
