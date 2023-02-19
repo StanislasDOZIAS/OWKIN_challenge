@@ -4,7 +4,7 @@ import pandas as pd
 from sklearn.model_selection import StratifiedKFold
 
 
-def build_dataset(data_path: str = "data/"):
+def build_dataset(data_path: str = "../data/"):
     """
     Build `X_train_mean, X_val_mean, X_train, X_val, y_train, y_val`
     TODO: add other aggregation that mean (e.g. max) ? Use a dict ?

@@ -22,7 +22,7 @@ class BaseAggregator(BaseModel):
 
     def __init__(self, mono_model):
         super().__init__()
-        self.is_aggregator = True
+        self.meta_type = "Aggregator"
         self.mono_model = copy.deepcopy(mono_model)
 
         self.type = f"{self._get_name()}/{self.mono_model.type}"
@@ -63,7 +63,7 @@ class SmoothMaxAggregator(BaseAggregator):
     def forward(self, x):
         mono_model_predictions = self.mono_model(x)
         smooth_max_prediction = (
-            torch.log(torch.exp(mono_model_predictions).sum(axis=-2))
-            / mono_model_predictions.shape[-2]
+            torch.log(torch.exp(mono_model_predictions).sum(axis=-1))
+            / mono_model_predictions.shape[-1]
         )
         return smooth_max_prediction

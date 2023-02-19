@@ -100,7 +100,7 @@ def train(
                 optimizer.zero_grad()
                 x = x.to(device)
                 y_predict = model(x)
-                loss = criterion(y_predict.cpu(), y.unsqueeze(dim=1).float())
+                loss = criterion(y_predict.cpu(), y.float())
                 loss.backward()
                 optimizer.step()
                 train_losses.append(loss.item())

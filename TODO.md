@@ -1,9 +1,8 @@
 ## TODO
 
-- SVM
+- data study (a bit late...)
 
-    - on the mean (replace MLP)
-    
+- SVM    
     - Support Vector Machines for Multiple-Instance Learning
 https://www.semanticscholar.org/paper/Support-Vector-Machines-for-Multiple-Instance-Andrews-Tsochantaridis/02e68b069d9cf13c082049429ffed18a5ca5f6d0
 

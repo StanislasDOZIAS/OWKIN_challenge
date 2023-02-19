@@ -3,12 +3,12 @@ from torch import nn
 
 class BaseModel(nn.Module):
     """
-    Base Model with all the strict minimum: is_aggregator, type, config and name
+    Base Model with all the strict minimum: meta_type, type, config and name
     """
 
     def __init__(self):
         super().__init__()
-        self.is_aggregator: bool
+        self.meta_type: bool
         self.type: str
         self.config: dict()
         self.name: str

@@ -1,17 +1,23 @@
 from torch import nn
+import torch
 from pathlib import Path
 
 from owkin.models.base_model import BaseModel
+from sklearn.svm import SVC
+
+import numpy as np
 
 
 class MonoModel(BaseModel):
     """
     A Mono Model takes as entry the features of one tile (or equivalent shape).
+    The forward method must return Tensors of shape [b,f] or [b]
+    (with b the batch size and f the number of features considered)
     """
 
     def __init__(self):
         super().__init__()
-        self.is_aggregator = False
+        self.meta_type = "MonoModel"
         self.best_path: Path = None
         self.type = self._get_name()
 
@@ -55,4 +61,26 @@ class MLP(MonoModel):
 
     def forward(self, x):
         """Forward pass"""
-        return self.layers(x)
+        return self.layers(x).squeeze()
+
+
+class SVM(MonoModel):
+    """
+    Support Vector Model
+    """
+
+    def __init__(self, C=1, kernel="rbf", degree=3):
+        super().__init__()
+        self.svm = SVC(C=C, kernel=kernel, degree=degree, probability=True)
+
+        self.config = {"C": C, "kernel": kernel, "degree": degree}
+
+    def forward(self, x):
+        """Forward pass"""
+        if len(x.shape) == 3:
+            to_return = np.zeros(x.shape[:-1])
+            for i, lime in enumerate(x):
+                to_return[i] = self.svm.predict_proba(lime)[:, 1]
+        else:
+            to_return = self.svm.predict_proba(x)[:, 1]
+        return torch.Tensor(to_return)
