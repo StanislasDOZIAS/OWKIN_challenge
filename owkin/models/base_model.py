@@ -8,7 +8,7 @@ class BaseModel(nn.Module):
 
     def __init__(self):
         super().__init__()
-        self.meta_type: bool
+        self.meta_type: str
         self.type: str
         self.config: dict()
         self.name: str

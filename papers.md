@@ -1,6 +1,17 @@
 ## List of usefull papers
 
 
+## Preprocessing
+
+### FeatureSelection
+
+- Feature Selection is the ReliefF for Multiple Instance Learning
+
+https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=cdf8bdc8a5c44d0c8e708895d580ee8765f1a8c8
+
+
+## Models
+
 ### General
 
 instance/bag lvl
