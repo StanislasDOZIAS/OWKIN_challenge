@@ -136,3 +136,4 @@ wandb/
 
 #models
 saved_models/
+saved_models_old_val/

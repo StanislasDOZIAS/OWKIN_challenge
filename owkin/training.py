@@ -46,8 +46,10 @@ def train(
     X_val: np.ndarray,
     y_val: np.ndarray,
     model: BaseModel,
-    learning_rate: float = 1e-6,
-    weight_decay: float = 1e-4,
+    learning_rate: float,
+    weight_decay: float,
+    val_center: str,
+    normalizer_type: str,
     batch_size: int = 64,
     nb_epochs: int = 5000,
     criterion: nn.Module = nn.BCELoss(),
@@ -66,17 +68,21 @@ def train(
         model.parameters(), lr=learning_rate, weight_decay=weight_decay
     )
 
-    run_name = f"{model.name}/{criterion._get_name()}/bs_{batch_size}/wd_{'{:.0e}'.format(weight_decay)}/lr_{'{:.0e}'.format(learning_rate)}"
+    run_name = f"{model.name}/{criterion._get_name()}/nt_{normalizer_type}/vc_{val_center}/bs_{batch_size}/wd_{'{:.0e}'.format(weight_decay)}/lr_{'{:.0e}'.format(learning_rate)}"
     if exp_name is not None:
         run_name += f"/{exp_name}"
 
     try:
         if use_wandb:
             config = copy.deepcopy(model.config)
+            config["model_type"] = model.type
+            config["model_meta_type"] = model.meta_type
             config["criterion"] = criterion._get_name()
             config["learning_rate"] = learning_rate
             config["weight_decay"] = weight_decay
             config["batch_size"] = batch_size
+            config["val_center"] = val_center
+            config["normalizer_type"] = normalizer_type
 
             wandb.init(
                 project="OWKIN",
@@ -139,7 +145,7 @@ def train(
     except KeyboardInterrupt:
         pass
 
-    PATH_DIR = Path(f"saved_models/{run_name}")
+    PATH_DIR = Path(f"./../saved_models/{run_name}")
 
     PATH = (
         PATH_DIR
