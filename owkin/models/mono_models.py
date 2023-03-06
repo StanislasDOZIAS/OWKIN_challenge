@@ -79,8 +79,8 @@ class SVM(MonoModel):
         """Forward pass"""
         if len(x.shape) == 3:
             to_return = np.zeros(x.shape[:-1])
-            for i, lime in enumerate(x):
-                to_return[i] = self.svm.predict_proba(lime)[:, 1]
+            for i, slide in enumerate(x):
+                to_return[i] = self.svm.predict_proba(slide)[:, 1]
         else:
             to_return = self.svm.predict_proba(x)[:, 1]
         return torch.Tensor(to_return)
