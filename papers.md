@@ -7,8 +7,7 @@
 
 - Feature Selection is the ReliefF for Multiple Instance Learning
 
-https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=cdf8bdc8a5c44d0c8e708895d580ee8765f1a8c8
-
+https://www.win.tue.nl/~mpechen/publications/pubs/ZafraISDA2010.pdf
 
 ## Models
 
