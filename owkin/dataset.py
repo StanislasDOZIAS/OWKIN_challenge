@@ -67,10 +67,10 @@ def build_dataset(
 
     X_normalized = dict()
     y = dict()
-    PATH_DIR = Path(f"data_dir{normalizer_type}/")
+    normalizer_dir = Path(f"{data_path}/normalizer/{normalizer_type}/")
     for center in train_val_centers:
         if normalizer_type != "None":
-            normalizer = np.load(f"{PATH_DIR}/{center}.npy").astype("float32")
+            normalizer = np.load(f"{normalizer_dir}/{center}.npy").astype("float32")
             X_normalized[center] = X_train_val[centers_train_val == center] / normalizer
         else:
             X_normalized[center] = X_train_val[centers_train_val == center]
@@ -90,7 +90,7 @@ def build_dataset(
     if normalizer_type != "None":
         test_normalizers = dict()
         for center in ["C_3", "C_4"]:
-            test_normalizers[center] = np.load(f"{PATH_DIR}/{center}.npy").astype(
+            test_normalizers[center] = np.load(f"{normalizer_dir}/{center}.npy").astype(
                 "float32"
             )
 

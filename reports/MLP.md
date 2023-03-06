@@ -76,7 +76,7 @@ nb_epochs = 2000
 
 ## MaxModel
 
-MaxModel takes a model which maps features of shape 2048 to a probability (for example a model trained on the mean of the 1000 features of a lime). The max model compute this model on each of the 1000 squares of the lime and output the max probability. The training is quite longer, but no so much (we have to reduce batch_size).
+MaxModel takes a model which maps features of shape 2048 to a probability (for example a model trained on the mean of the 1000 features of a slide). The max model compute this model on each of the 1000 squares of the slide and output the max probability. The training is quite longer, but no so much (we have to reduce batch_size).
 
     - If put on an untrained MLP, it doesn't work at all
     - If put on a trained MLP, it goes quite well to 0.68 of val score, but go down after
