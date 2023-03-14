@@ -29,6 +29,10 @@ https://arxiv.org/pdf/1612.03365.pdf
 
 ### MLP
 
+- https://arxiv.org/abs/1610.02501
+
+https://arxiv.org/abs/1610.02501
+
 - Using Neural Network Formalism to Solve Multiple-Instance Problems
 
 https://paperswithcode.com/paper/using-neural-network-formalism-to-solve

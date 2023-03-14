@@ -53,7 +53,7 @@ class MaxAggregator(BaseAggregator):
 class SmoothMaxAggregator(BaseAggregator):
     """
     An aggregator model which outputs the smooth_maximum of the 1000 predictions.
-    The idea comes from here: https://paperswithcode.com/paper/using-neural-network-formalism-to-solve
+    The idea comes from here: https://arxiv.org/abs/1610.02501, https://arxiv.org/abs/1609.07257
     """
 
     def __init__(self, mono_model):
@@ -67,3 +67,18 @@ class SmoothMaxAggregator(BaseAggregator):
             / mono_model_predictions.shape[-1]
         )
         return smooth_max_prediction
+
+
+class MeanAggregator(BaseAggregator):
+    """
+    An aggregator model which outputs the smooth_maximum of the 1000 predictions.
+    The idea comes from here: https://arxiv.org/abs/1610.02501, https://arxiv.org/abs/1609.07257
+    """
+
+    def __init__(self, mono_model):
+        super().__init__(mono_model)
+        self.compute_name()
+
+    def forward(self, x):
+        mono_model_predictions = self.mono_model(x)
+        return mono_model_predictions.mean(axis=-1)

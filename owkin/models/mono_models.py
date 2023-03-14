@@ -4,6 +4,8 @@ from pathlib import Path
 
 from owkin.models.base_model import BaseModel
 from sklearn.svm import SVC
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 
 import numpy as np
 
@@ -64,23 +66,67 @@ class MLP(MonoModel):
         return self.layers(x).squeeze()
 
 
-class SVM(MonoModel):
+class SklearnModel(MonoModel):
     """
-    Support Vector Model
+    abstract class for SklearModels
     """
 
-    def __init__(self, C=1, kernel="rbf", degree=3):
+    def __init__(self):
         super().__init__()
-        self.svm = SVC(C=C, kernel=kernel, degree=degree, probability=True)
-
-        self.config = {"C": C, "kernel": kernel, "degree": degree}
+        self.sk_model = None
+        self.config = None
 
     def forward(self, x):
         """Forward pass"""
         if len(x.shape) == 3:
             to_return = np.zeros(x.shape[:-1])
             for i, slide in enumerate(x):
-                to_return[i] = self.svm.predict_proba(slide)[:, 1]
+                to_return[i] = self.sk_model.predict_proba(slide)[:, 1]
         else:
-            to_return = self.svm.predict_proba(x)[:, 1]
+            to_return = self.sk_model.predict_proba(x)[:, 1]
         return torch.Tensor(to_return)
+
+
+class SVM(SklearnModel):
+    """
+    Support Vector Model
+    """
+
+    def __init__(self, C=1, kernel="rbf", degree=3):
+        super().__init__()
+        self.sk_model = SVC(C=C, kernel=kernel, degree=degree, probability=True)
+        self.config = {"C": C, "kernel": kernel, "degree": degree}
+
+
+class LogReg(SklearnModel):
+    """
+    LogisticRegression
+    """
+
+    def __init__(self, C=1, penalty="l1"):
+        super().__init__()
+        self.sk_model = LogisticRegression(C=C, penalty=penalty, solver="liblinear")
+        self.config = {"C": C, "penalty": penalty}
+
+
+class RandomForest(SklearnModel):
+    """
+    LogisticRegression
+    """
+
+    def __init__(
+        self, n_estimators=100, max_depth=None, criterion="gini", max_features="log2"
+    ):
+        super().__init__()
+        self.sk_model = RandomForestClassifier(
+            n_estimators==n_estimators,
+            max_depth=max_depth,
+            criterion=criterion,
+            max_features=max_features,
+        )
+        self.config = {
+            "n_estimators": n_estimators,
+            "max_depth": max_depth,
+            "criterion": criterion,
+            "max_features": max_features,
+        }

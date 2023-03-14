@@ -3,6 +3,7 @@
 `num_layer=2, inside_dim=512, val_score = 0.808, wd = 0 => 0.6642`
 
 
+
 ## Big grid search
 
 ### Tested paramters
@@ -26,6 +27,11 @@ list_lr = [1e-6, 3e-6]
 
 - See W&B or `images\comparison_Smooth_MaxMLP_wd_lr_mono_lr`
 
+## New val centers:
+- nl = 2 => 0.61 sur test alors que 0.71 sur C_2 et C_5 (avec nt = lambda_expo)
+
+## old val:
+- See W&B or `images\comparison_Smooth_MaxMLP_wd_lr_mono_lr`
 - `lr = 1e-6` same as `lr = 3e-6` but slower and steadier => keep `lr=1e-6`
 - `mono_lr = 3e-6` looks the more robust => keep `mono_lr=3e-6`
 - test results:

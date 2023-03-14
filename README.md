@@ -3,7 +3,7 @@ Repository for the data challenge "Détection de la mutation PIK3CA dans le canc
 
 ## Notation
 
-Given train set split in train and dev set (see `build_dataset` in `owkin\dataset.py`). Important line:
+If not val set per center, given train set split in train and dev is set (see `build_dataset` in `owkin\dataset.py`). Important line:
 ```
 kfold = StratifiedKFold(5, shuffle=True, random_state=42)
 ```
