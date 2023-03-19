@@ -96,6 +96,7 @@ class SVM(SklearnModel):
         super().__init__()
         self.sk_model = SVC(C=C, kernel=kernel, degree=degree, probability=True)
         self.config = {"C": C, "kernel": kernel, "degree": degree}
+        self.compute_name()
 
 
 class LogReg(SklearnModel):
@@ -107,6 +108,7 @@ class LogReg(SklearnModel):
         super().__init__()
         self.sk_model = LogisticRegression(C=C, penalty=penalty, solver="liblinear")
         self.config = {"C": C, "penalty": penalty}
+        self.compute_name()
 
 
 class RandomForest(SklearnModel):
@@ -130,3 +132,4 @@ class RandomForest(SklearnModel):
             "criterion": criterion,
             "max_features": max_features,
         }
+        self.compute_name()
